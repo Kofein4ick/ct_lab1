@@ -52,7 +52,7 @@ function App() {
     let k=0;
     for(let i=0;i<=current_num;i++){
       let tdtable=[]
-      tdtable.push(<td>Строка {i+1}</td>)
+      tdtable.push(<td>Блок {i+1}</td>)
     for(let j=0;j<count;j++){
       disk_arr_in[j]=i+1;
       disk_arr_in[count-1-k]='q';
@@ -66,7 +66,7 @@ function App() {
     }
     for(let i=current_num+1;i<cycle_count;i++){
       let tdtable=[]
-      tdtable.push(<td>Строка {i+1}</td>)
+      tdtable.push(<td>Блок {i+1}</td>)
       for(let j=0;j<count;j++){
         disk_arr_in[j]='empty';
         tdtable.push(<td>{disk_arr_in[j]}</td>)
