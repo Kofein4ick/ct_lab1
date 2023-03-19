@@ -7,14 +7,17 @@ function App() {
   const [data_size,setData]=useState(60);
   const [current_num,setNum]=useState(1);
   const [table,setTable]=useState(null);
+  const [izb,setIZB]=useState(0);
+  const [block_s,setBlock]=useState(0);
 
 
   function buttonPush(){
     let disk_arr_in =[];
     let thtable=[];
     let trtable=[];
-    let block=data_size/(count-2);
-    let cycle_count=capacity/block;
+    let block=Math.ceil(data_size/(count-2));
+    setBlock(block);
+    let cycle_count=Math.floor(capacity/block);
     for(let i=0;i<cycle_count;i++){
       let tdtable=[]
       tdtable.push(<td>Строка {i+1}</td>)
@@ -36,14 +39,16 @@ function App() {
     </table>
     setTable(teble);
     setNum(0);
+    setIZB(0);
   };
 
   function buttonPush2(){
     let disk_arr_in =new Array(count);
     let thtable=[];
     let trtable=[];
-    let block=data_size/(count-2);
-    let cycle_count=capacity/block;
+    let block=Math.ceil(data_size/(count-2));
+    setBlock(block);
+    let cycle_count=Math.floor(capacity/block);
     let k=0;
     for(let i=0;i<=current_num;i++){
       let tdtable=[]
@@ -81,6 +86,8 @@ function App() {
      if(current_num===cycle_count-1) {
       setNum(0);
     }
+    let izb1=((capacity*count)-(data_size*(current_num+1)))/(capacity*count);
+    setIZB(izb1.toFixed(3));
     setTable(teble);   
    };
 
@@ -112,7 +119,9 @@ function App() {
         </span>
         <button onClick={buttonPush2}>OK</button>
       </div>
-      {table}
+      <div>{table}</div>
+      <div className='second_string'>Избыточность {izb}</div>
+      <div className='second_string'>Размер блока {block_s}</div>
     </div>
   );
 }
